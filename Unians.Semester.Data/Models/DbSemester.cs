@@ -1,12 +1,14 @@
-﻿using BaseRepositories.EntityFrameworkCore.Models;
+﻿using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Semester.DAL.Models
+namespace Unians.Semester.Data.Models
 {
-    public class SemesterDbModel : BaseEntity
+    public class DbSemester : DbIdEntity
     {
+        public int UniversityId { get; set; }
+
         public string Name { get; set; }
 
         public DateTime StartDate { get; set; }

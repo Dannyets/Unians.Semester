@@ -10,14 +10,14 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
-    <PackageReference Include="AspNetCore.Infrastructure.Controllers" Version="1.0.0" />
+    <PackageReference Include="AspNetCore.Infrastructure.Controllers" Version="1.1.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Semester.Api.Models\Semester.Api.Models.csproj" />
-    <ProjectReference Include="..\Semester.DAL\Semester.DAL.csproj" />
+    <ProjectReference Include="..\Unians.Semester.Api.Data\Unians.Semester.Api.Data.csproj" />
+    <ProjectReference Include="..\Unians.Semester.Data\Unians.Semester.Data.csproj" />
   </ItemGroup>
 
 </Project>

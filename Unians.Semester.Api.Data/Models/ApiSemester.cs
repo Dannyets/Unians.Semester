@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Semester.Api.Models
+namespace Unians.Semester.Api.Data.Models
 {
-    public class SemesterApiModel
+    public class ApiSemester
     {
         public int Id { get; set; }
+
+        public int UniversityId { get; set; }
 
         public string Name { get; set; }
 

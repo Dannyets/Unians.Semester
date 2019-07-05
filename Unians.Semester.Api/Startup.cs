@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Helpers;
 using AutoMapper;
-using BaseRepositories.EntityFrameworkCore.MySql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Semester.DAL;
-using Semester.DAL.Interfaces;
-using Semester.DAL.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
+using Unians.Semester.Data.Context;
+using Unians.Semester.Data.Interfaces;
+using Unians.Semester.Data.Repositories;
 
-namespace Semester.Api
+namespace Unians.Semester.Api
 {
     public class Startup
     {
@@ -32,11 +33,13 @@ namespace Semester.Api
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddTransient<ISemesterRepository, SemesterRepository>();
-
             services.AddDbContext<SemesterDbContext>();
+
+            services.AddTransient<DbContext, SemesterDbContext>();
+
+            services.AddTransient<ISemesterRepository, SemestersRepository>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(options =>
             {
@@ -58,7 +61,8 @@ namespace Semester.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            MySqlDbHelper.MigrateDatabase<SemesterDbContext>(serviceProvider);
+            //TODO: CHANGE TO MIGRATE ONCE DB IS CREATED
+            DatabaseHelper.EnsureDatabaseCreated<SemesterDbContext>(serviceProvider);
 
             if (env.IsDevelopment())
             {
