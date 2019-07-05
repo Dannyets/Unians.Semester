@@ -9,11 +9,7 @@
     <Description>Shared models for semester api service</Description>
     <PackageProjectUrl>https://github.com/Dannyets/Unians.Semester</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Dannyets/Unians.Semester</RepositoryUrl>
-    <Version>1.0.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AspNetCore.Infrastructure.Controllers.Data" Version="1.0.0" />
-  </ItemGroup>
 
 </Project>

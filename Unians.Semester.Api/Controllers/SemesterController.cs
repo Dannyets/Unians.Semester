@@ -1,19 +1,16 @@
 ﻿using AspNetCore.Infrastructure.Controllers;
-using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Models.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Unians.Semester.Api.Data.Interfaces;
 using Unians.Semester.Api.Data.Models;
 using Unians.Semester.Data.Interfaces;
 using Unians.Semester.Data.Models;
 
 namespace Unians.Semester.Api.Controllers
 {
-    public class SemesterController : BaseEfCrudController<ApiSemester, DbSemester>, ISemesterApi
+    public class SemesterController : BaseEfCrudController<ApiSemester, DbSemester>
     {
         private readonly ISemesterRepository _repository;
 
@@ -26,9 +23,11 @@ namespace Unians.Semester.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApiSemester>>> GetSemestersForUniversity(int universityId)
         {
-            var semsters = await _repository.GetSemestersForUniversity(universityId);
+            var dbSemsters = await _repository.GetSemestersForUniversity(universityId);
 
-            return Ok(semsters);
+            var apiSemesters = dbSemsters.Select(s => _mapper.Map<ApiSemester>(s));
+
+            return Ok(apiSemesters);
         }
     }
 }
